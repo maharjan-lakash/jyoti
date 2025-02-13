@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Will You Be My Valentine?</title>
+    <style>
+      /* General Styles */
+      body {
+        margin: 0;
+        font-family: "Georgia", serif;
+        color: #ff0000;
+        background-color: #ec9e9e;
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        background-image: url("background.jpg");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        animation: fadeIn 2s ease-in;
+      }
+
+      .hero-content p {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        animation: fadeIn 3s ease-in;
+      }
+
+      #valentineButton {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        color: #fff;
+        background-color: #e74c3c;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #valentineButton:hover {
+        background-color: #c0392b;
+      }
+
+      /* Gallery Section */
+      .gallery {
+        padding: 10px 20px;
+        background-color: #fff;
+        color: #333;
+        text-align: center;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 20px;
+        margin-top: 10px;
+      }
+
+      .gallery-grid img {
+        width: 35%;
+        border-radius: 10px;
+        opacity: 0;
+        transition: opacity 1s ease-in;
+      }
+
+      .gallery-grid img.fade-in {
+        opacity: 1;
+      }
+
+      /* Footer */
+      footer {
+        padding: 20px;
+        background-color: #e74c3c;
+        text-align: center;
+        color: #fff;
+      }
+
+      footer p {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      #replayMusic {
+        padding: 10px 20px;
+        font-size: 1rem;
+        color: #e74c3c;
+        background-color: #fff;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>My Dearest Jyoti,</h1>
+        <p>
+          Every moment with you feels like a dream. Will you be my Valentine?
+        </p>
+        <button id="valentineButton">❤️ Yes ❤️</button>
+      </div>
+    </section>
+
+    <section class="gallery">
+      <h2>Our one and only captured memory together</h2>
+      <div class="gallery-grid">
+        <img src="img1.png" alt="Memory 1" class="fade-in" />
+      </div>
+    </section>
+
+    <footer>
+      <p>"You are my today and all of my tomorrows."</p>
+      <button id="replayMusic">Replay Music</button>
+    </footer>
+
+    <audio id="backgroundMusic">
+      <source src="bgm.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <script>
+      // Play background music on page load
+      document.addEventListener("DOMContentLoaded", () => {
+        const music = document.getElementById("backgroundMusic");
+        music.play();
+      });
+
+      // Valentine Button Interaction
+      const valentineButton = document.getElementById("valentineButton");
+      valentineButton.addEventListener("click", () => {
+        alert("Thank you for making me the happiest person! 💖");
+      });
+
+      // Replay Music Button
+      const replayMusicButton = document.getElementById("replayMusic");
+      replayMusicButton.addEventListener("click", () => {
+        const music = document.getElementById("backgroundMusic");
+        music.currentTime = 0;
+        music.play();
+      });
+
+      // Fade-in effect for gallery images on scroll
+      const galleryImages = document.querySelectorAll(".gallery-grid img");
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+          }
+        });
+      });
+
+      galleryImages.forEach((image) => {
+        observer.observe(image);
+      });
+    </script>
+  </body>
+</html>
